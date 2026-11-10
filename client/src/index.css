@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --primary: #ec4899;
+  --primary-foreground: #ffffff;
+  --radius: 1rem;
+  --background: #fff5f8;
+  --foreground: #4a2e3b;
+  --card: #ffffff;
+  --card-foreground: #4a2e3b;
+  --popover: #ffffff;
+  --popover-foreground: #4a2e3b;
+  --secondary: #fce7f3;
+  --secondary-foreground: #9d174d;
+  --muted: #fdf2f8;
+  --muted-foreground: #9ca3af;
+  --accent: #fbcfe8;
+  --accent-foreground: #831843;
+  --destructive: #f43f5e;
+  --destructive-foreground: #ffffff;
+  --border: #f9a8d4;
+  --input: #f9a8d4;
+  --ring: #ec4899;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Gowun Dodum", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at 20% 10%, #ffe4ec 0%, #fff5f8 40%, #fdf2f8 80%, #fce7f3 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    letter-spacing: -0.01em;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+.font-display {
+  font-family: "Jua", "Gowun Dodum", sans-serif;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1200px;
+  }
+}
+
+/* Princess card styling */
+.princess-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #f9a8d4;
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px -10px rgba(244, 114, 182, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.princess-card:hover {
+  box-shadow: 0 14px 34px -10px rgba(244, 114, 182, 0.35);
+}
+
+.princess-btn {
+  background: linear-gradient(135deg, #fb7185 0%, #ec4899 100%);
+  color: white;
+  font-family: "Jua", "Gowun Dodum", sans-serif;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 20px -4px rgba(236, 72, 153, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.princess-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -4px rgba(236, 72, 153, 0.55);
+}
+.princess-btn:active {
+  transform: translateY(1px);
+}
+
+.princess-btn-secondary {
+  background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 100%);
+  border: 1.5px solid #f9a8d4;
+  color: #9d174d;
+  font-family: "Jua", "Gowun Dodum", sans-serif;
+  box-shadow: 0 4px 14px -4px rgba(244, 114, 182, 0.25);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.princess-btn-secondary:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+}
+
+.princess-pill {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+  border: 1px solid #f9a8d4;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: floatY 3.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+}
+.animate-sparkle {
+  animation: sparkle 2.2s ease-in-out infinite;
+}
+
+@keyframes popDelta {
+  0% { transform: translateY(8px); opacity: 0; }
+  30% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-14px); opacity: 0; }
+}
+.animate-pop-delta {
+  animation: popDelta 1.4s ease-out forwards;
+}
+
+/* Safe-area padding for mobile browsers */
+.safe-pb {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
